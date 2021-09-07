@@ -3,10 +3,11 @@ var saved = {};
 
 function init() {
     saved = JSON.parse(localStorage.getItem("scheduleSave"));
+    if (saved !== null){
     for (var i = 0; i < Object.keys(saved).length; i++){
-        console.log(Object.keys(saved)[0]);
         $("ul[data-time="+Object.keys(saved)[i]+"]").children(".description").val(saved[Object.keys(saved)[i]]);
-    }
+        }
+    };
     setInterval(function() {
         now = moment();
         $("#currentDay").text(now.format("MMMM Do YYYY, h:mm:ss a"));
