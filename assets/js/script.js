@@ -2,13 +2,14 @@ var now = moment();
 var saved = {};
 
 function init() {
-    saved = JSON.parse(localStorage.getItem("scheduleSave"));
-    console.log(saved);
-    if (saved !== null){
-        for (var i = 0; i < Object.keys(saved).length; i++){
-            $("ul[data-time="+Object.keys(saved)[i]+"]").children(".description").val(saved[Object.keys(saved)[i]]);
-        };
+    if(JSON.parse(localStorage.getItem("scheduleSave") !== null)){
+        saved = JSON.parse(localStorage.getItem("scheduleSave"));
     };
+
+    for (var i = 0; i < Object.keys(saved).length; i++){
+        $("ul[data-time="+Object.keys(saved)[i]+"]").children(".description").val(saved[Object.keys(saved)[i]]);
+    };
+
     setInterval(function() {
         now = moment();
         $("#currentDay").text(now.format("MMMM Do YYYY, h:mm:ss a"));
@@ -24,7 +25,7 @@ function init() {
             };
         })
     }, 500);
-  };
+};
 
 $(".saveBtn").click(function(){
     var text = $(this).parent().children(".description").val();
