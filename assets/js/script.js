@@ -3,10 +3,11 @@ var saved = {};
 
 function init() {
     saved = JSON.parse(localStorage.getItem("scheduleSave"));
+    console.log(saved);
     if (saved !== null){
-    for (var i = 0; i < Object.keys(saved).length; i++){
-        $("ul[data-time="+Object.keys(saved)[i]+"]").children(".description").val(saved[Object.keys(saved)[i]]);
-        }
+        for (var i = 0; i < Object.keys(saved).length; i++){
+            $("ul[data-time="+Object.keys(saved)[i]+"]").children(".description").val(saved[Object.keys(saved)[i]]);
+        };
     };
     setInterval(function() {
         now = moment();
